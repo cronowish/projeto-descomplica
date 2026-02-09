@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
   styleUrl: './auth.scss',
 })
 export class Auth {
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
+  login() {
+    this.authService.login();
+    this.router.navigate(['/cart']);
+  }
 }
